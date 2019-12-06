@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>在IIS上部署项目总结 | Majin Patrick Star</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="#发布前的准备  一般情况下先需要安装这三个  保证项目模块里面有这两个  查看配置环境在cmd执行 1dotnen --info ##打包项目  鼠标右击你要发布的项目选择发布  配置发布路径(准备一个空的文件夹)，选择发布方法为 文件系统  点击设置，如图配置，切记选择发布前删除所有现有文件  配置好后点击发布  发布成功后文件夹里会有很多打包好的文件   ##安装IIS管理器  在控制面版中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在IIS上部署项目总结">
+<meta property="og:url" content="http:&#x2F;&#x2F;553306277.github.io&#x2F;2019&#x2F;12&#x2F;06&#x2F;%E5%9C%A8IIS%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93&#x2F;index.html">
+<meta property="og:site_name" content="Majin Patrick Star">
+<meta property="og:description" content="#发布前的准备  一般情况下先需要安装这三个  保证项目模块里面有这两个  查看配置环境在cmd执行 1dotnen --info ##打包项目  鼠标右击你要发布的项目选择发布  配置发布路径(准备一个空的文件夹)，选择发布方法为 文件系统  点击设置，如图配置，切记选择发布前删除所有现有文件  配置好后点击发布  发布成功后文件夹里会有很多打包好的文件   ##安装IIS管理器  在控制面版中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-60d9e94286f7eae1.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-9655a6c388c451a4.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-2aa1f50f06e4b83a.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-423d2a971c0f8758.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-2a8037b5e456777f.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-89200dffd18d0b91.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-69cf4093f8f1a16a.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-2adce9d09db93d80.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-165738dad2f49ebe.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-122c025225e1db98.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-47d6c155857ca34c.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-9739dd16d7ad6ac0.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-c36348ae54a17049.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-7db9c93955d8a031.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-4cee9dd5a7451b24.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-d722cdb5c5cc0cd5.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-0a9d850c6c5d0793.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-e62b865dc5369b6d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-bee97895bf3f83c1.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-b398e5ec2386f80e.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-e50843a796081534.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-30f6889549138ccf.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-3c290df0f8edb475.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-f1cd17bd2913f96c.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-bf23d37cd9d793b9.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1200&#x2F;format&#x2F;webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-646170e53904864a.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1032&#x2F;format&#x2F;webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-2b3ea471f6a0b273.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;342&#x2F;format&#x2F;webp">
+<meta property="og:updated_time" content="2019-12-06T08:55:22.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-60d9e94286f7eae1.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+
+  
+
+  
+    <link rel="icon" href="/images/avatar.jpg">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ASP-Net-Core-运行错误-Http-Error-502-5-解决办法"><span class="toc-text">ASP.Net Core 运行错误 Http Error 502.5 解决办法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Http-Error-502-5-Process-Failure"><span class="toc-text">Http Error 502.5 - Process Failure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决思路"><span class="toc-text">解决思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一种"><span class="toc-text">第一种</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二种"><span class="toc-text">第二种</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三种【推荐办法】"><span class="toc-text">第三种【推荐办法】</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-在IIS上部署项目总结" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">在IIS上部署项目总结</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.12.06</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Majin Patrick Star</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>#发布前的准备</p>
+<ul>
+<li><p>一般情况下先需要安装这三个<br><img src="https://upload-images.jianshu.io/upload_images/18844140-60d9e94286f7eae1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>保证项目模块里面有这两个<br><img src="https://upload-images.jianshu.io/upload_images/18844140-9655a6c388c451a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>查看配置环境<br>在cmd执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dotnen --info</span></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18844140-2aa1f50f06e4b83a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>##打包项目</p>
+</li>
+<li><p>鼠标右击你要发布的项目选择发布<br><img src="https://upload-images.jianshu.io/upload_images/18844140-423d2a971c0f8758.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20190430094158117.png"></p>
+</li>
+<li><p>配置发布路径(准备一个空的文件夹)，选择发布方法为 文件系统<br><img src="https://upload-images.jianshu.io/upload_images/18844140-2a8037b5e456777f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>点击设置，如图配置，切记选择发布前删除所有现有文件<br><img src="https://upload-images.jianshu.io/upload_images/18844140-89200dffd18d0b91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>配置好后点击发布<br><img src="https://upload-images.jianshu.io/upload_images/18844140-69cf4093f8f1a16a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>发布成功后文件夹里会有很多打包好的文件<br><img src="https://upload-images.jianshu.io/upload_images/18844140-2adce9d09db93d80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<p>##安装IIS管理器</p>
+<ul>
+<li>在控制面版中找到程序与功能<br><img src="https://upload-images.jianshu.io/upload_images/18844140-165738dad2f49ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+<li>打开启用或关闭Windows功能安装所需要的</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/18844140-122c025225e1db98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>打上勾后点击确定会自动安装，安装好后打开IIS管理器（在开始里面的windows工具里）<br><img src="https://upload-images.jianshu.io/upload_images/18844140-47d6c155857ca34c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+<li>打开IIS管理器配置网站<br><img src="https://upload-images.jianshu.io/upload_images/18844140-9739dd16d7ad6ac0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+<li>填写信息，路径选择刚在打包好的路径<br><img src="https://upload-images.jianshu.io/upload_images/18844140-c36348ae54a17049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>在 网站 上右击选择 添加网站，输入自定义网站名（可以是项目名，比较好找），选择物理路径（项目发布文件的路径），接下来设置端口号，一定要设置且不能重复。80端口默认的不能使用，随便输入一个没有被用过的即可。主机名不要填，否则别人访问不了。点击确定就好了。</li>
+<li>这样你的项目就IIS上布置好了<br>##常见的错误</li>
+<li>先配置如何看日志，方便分析错误</li>
+</ul>
+<p>1.打包的文件里面有最后面有一个叫web.config的文件，打开文件将<br>stdoutLogEnabled=”false”  改为true 后会生成一个logs文件夹，如果没有手动创建下<br>日志文件就会在logs文件里。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18844140-7db9c93955d8a031.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>##连接本机数据库</p>
+<ul>
+<li><p>打开sqlserver选择登录名，右击选择新建登录名<br><img src="https://upload-images.jianshu.io/upload_images/18844140-4cee9dd5a7451b24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>点击搜索，选择高级，点击立即查找，选择SERVICE后点确定<br><img src="https://upload-images.jianshu.io/upload_images/18844140-d722cdb5c5cc0cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18844140-0a9d850c6c5d0793.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18844140-e62b865dc5369b6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18844140-bee97895bf3f83c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18844140-b398e5ec2386f80e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>选择服务器角色<br><img src="https://upload-images.jianshu.io/upload_images/18844140-e50843a796081534.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>配置IIS应用程序池，选择自己的项目右击选择高级设置，如图改标识<br><img src="https://upload-images.jianshu.io/upload_images/18844140-30f6889549138ccf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>这样数据库就和项目连上了</p>
+</li>
+<li><p>在部署项目中遇到的另一个坑，（delete请求报404）<br>解决方法：<br>安装IIS的时候如果选择了WebDAV(Web Distribution Authorization Versioning) Publish,则所有的Web Site默认会应用WebDAV Module和WebDAV Handler.<br><img src="https://upload-images.jianshu.io/upload_images/18844140-3c290df0f8edb475.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18844140-f1cd17bd2913f96c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>WebDAV是基于HTTP协议的扩展，添加了很多Method用于管理服务器上的文件</p>
+</li>
+</ul>
+<p>WebDAV Module和WebDAV Handler<br>WebDAV Handler的默认配置是处理如下 Method:PROPFIND,PROPPATCH,MKCOL,PUT,COPY,DELETE,MOVE,LOCK,UNLOCK。(可以参考%userprofile%/documents/iisexpress/config/applicationhost.config中的配置)因此PUT和DELETE请求会被Dispatch给WebDAV Handler来处理,但是我们一般不会Enable WebDAV功能。因此Delete和Put请求会被拒绝。</p>
+<ul>
+<li>解决办法　　　　　　　　　　　　　　<br>既然根本原因是WebDAV,最直接的解决办法就是移除WebDAV(一般情况下我们不会用到该功能)。移除有如下几种方法：<br>直接从系统中移除WebDAV Publish的整个功能(参考上面打开WebDAV Publish的截图)<br>在Web Site的web.config中移除WebDAVModule和WebDAVHandler<br>&lt;system.webServer&gt;  <modules>
+    <remove name=“WebDAVModule”/>
+ </modules>
+ <handlers>
+   <remove name=“WebDAV”/>
+ </handlers>
+</system.webServer>
+<meta charset="utf-8">
+
+</li>
+</ul>
+<h1 id="ASP-Net-Core-运行错误-Http-Error-502-5-解决办法"><a href="#ASP-Net-Core-运行错误-Http-Error-502-5-解决办法" class="headerlink" title="ASP.Net Core 运行错误 Http Error 502.5 解决办法"></a>ASP.Net Core 运行错误 Http Error 502.5 解决办法</h1><h1 id="Http-Error-502-5-Process-Failure"><a href="#Http-Error-502-5-Process-Failure" class="headerlink" title="Http Error 502.5 - Process Failure"></a>Http Error 502.5 - Process Failure</h1><p><img src="//upload-images.jianshu.io/upload_images/1979022-bf23d37cd9d793b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="image"></p>
+<p>如果你看到上面这张图片了的话，说明你在本地运行的时候报错了。<br>尤其好多都是我的群友，说下情况。</p>
+<p>这个一般是本地的.NET Core SDK版本不统一报错造成的。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>当时的项目版本为.NET CORE 2.0，所以现在有很多群友下载然后运行就报错了。<br>现在是因为下载的SDK是2.1 。所以版本对应不上就GG 了。<br>理论上来说.NET CORE 2.1X是需要进行向下兼容的。但是不知道为什么这把就没有做好。<br>原因：项目的SDK版本和运营环境的SDK版本对应不上。<br>解决方案有两种，一种是升级项目的.NET CORE版本，还有一种就是安装对应的.NET CORE版本。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>首先你要去找你的IIS报错日志，得到的<code>错误代码 ErrorCode = &#39;0x80004005 : 8000808c.</code>是这个的话，那就可以通过我说的办法来解决了。</p>
+<h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h2><p>通过直接修改web.config 的文件。</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1979022-646170e53904864a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1032/format/webp" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;aspNetCore processPath&#x3D;&quot;dotnet&quot; arguments&#x3D;&quot;.\LTM.School.dll&quot; stdoutLogEnabled&#x3D;&quot;false&quot; stdoutLogFile&#x3D;&quot;.\logs\stdout&quot; &#x2F;&gt;</span></pre></td></tr></table></figure>
+
+<p>将 <code>processPath=&quot;dotnet&quot;</code>改成你安装的.NET CORE SDK路径，一般默认在”C:\Program Files\dotnet\dotnet.exe”路径下，替换下就可以解决了。</p>
+<blockquote>
+<p>这种一般是常规加临时解决方案，不稳定。</p>
+</blockquote>
+<h2 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h2><p><strong>下载对应版本的SDK</strong>地址：<a href="https://www.microsoft.com/net/download/archives" target="_blank" rel="noopener">https://www.microsoft.com/net/download/archives</a></p>
+<p><img src="//upload-images.jianshu.io/upload_images/1979022-2b3ea471f6a0b273.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/342/format/webp" alt="image"></p>
+<p>找到对应的大版本，然后里面有具体的版本信息。</p>
+<blockquote>
+<p>但是有个问题，你如果已经装了高版本的SDK，是无法安装低版本的SDK的，所以也不推荐这个办法。</p>
+</blockquote>
+<h1 id="第三种【推荐办法】"><a href="#第三种【推荐办法】" class="headerlink" title="第三种【推荐办法】"></a>第三种【推荐办法】</h1><p>升级你项目的SDK.比如<a href="https://github.com/52ABP/52ABP.School" target="_blank" rel="noopener">https://github.com/52ABP/52ABP.School</a> 的.NET Core版本就是2.0，直接升级到2.1后，发布环境，所有的问题迎刃而解。</p>
+<blockquote>
+<p>.NET Core 还很年轻，大家多给他点时间。相信他会改变不一样的开发环境</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持Majin Patrick Star</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/12/06/WebAPI%E5%AD%A6%E4%B9%A0/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
