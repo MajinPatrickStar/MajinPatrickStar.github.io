@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>ABP Host+Vue-element-admin前后分离部署IIS | Majin Patrick Star</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="环境部署," />
+  
+
+  <meta name="description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.PNG)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](ABP Host+Vue-elem">
+<meta name="keywords" content="环境部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ABP Host+Vue-element-admin前后分离部署IIS">
+<meta property="og:url" content="http:&#x2F;&#x2F;553306277.github.io&#x2F;2019&#x2F;12&#x2F;12&#x2F;ABP%20Host+Vue-element-admin%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2IIS&#x2F;index.html">
+<meta property="og:site_name" content="Majin Patrick Star">
+<meta property="og:description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.PNG)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](ABP Host+Vue-elem">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-12T08:32:48.542Z">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/images/avatar.jpg">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Host和vue-elemnet-admin部署"><span class="toc-text">Host和vue-elemnet-admin部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦"><span class="toc-text">Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-element-admin打包部署iis"><span class="toc-text">vue-element-admin打包部署iis</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-ABP Host+Vue-element-admin前后分离部署IIS" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">ABP Host+Vue-element-admin前后分离部署IIS</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.12.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Majin Patrick Star</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Host和vue-elemnet-admin部署"><a href="#Host和vue-elemnet-admin部署" class="headerlink" title="Host和vue-elemnet-admin部署"></a>Host和vue-elemnet-admin部署</h1><h4 id="Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦"><a href="#Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦" class="headerlink" title="Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦"></a>Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦</h4><ul>
+<li>这里有一个跨域问题需要注意</li>
+</ul>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/1.PNG)<strong>在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口</strong></p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/2.PNG)</p>
+<p><strong>ServerRootAddress为你的服务端地址</strong></p>
+<p><strong>CorsOrigins为你的客户端地址</strong></p>
+<ul>
+<li>配置好这些直接把包放在IIS上就可以成功访问接口API了</li>
+</ul>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/3.PNG)</p>
+<h2 id="vue-element-admin打包部署iis"><a href="#vue-element-admin打包部署iis" class="headerlink" title="vue-element-admin打包部署iis"></a>vue-element-admin打包部署iis</h2><ul>
+<li>打包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm run build:prod</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">构建打包成功之后，会在根目录生成 dist 文件夹，里面就是构建打包好的文件</span></pre></td></tr></table></figure>
+
+<ul>
+<li>发布</li>
+</ul>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/4.PNG)</p>
+<p>1.在”网站”执行鼠标右键，选择添加网站。<br>2.网站名称：按照用途或者项目起名即可<br>3.应用程序池：部署前端项目，这个可以忽略，任意选择即可<br>4.内容目录：网站存放的路径，最好以英文命名<br>5.端口：web一般是80端口，不过我的80已经被其他项目占用，所以我设置为8082 </p>
+<ul>
+<li><p>访问网站</p>
+<p>访问网站可以在IIS界面右侧直接浏览，不过大家都知道一把部署都不会一次性成功的，开始填坑吧！</p>
+</li>
+</ul>
+<p>我记录下自己在部署中的坑，以免下次遇到</p>
+<ul>
+<li>填坑–报错：URL拼写错误</li>
+</ul>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/5.PNG)</p>
+<p>报错内容：提示URL拼写错误</p>
+<p><strong>在IIS中开启代理和设置URL重写可以解决上述问题</strong></p>
+<p>1.下载所需要的模块: urlrewrite </p>
+<p> 传送门：<a href="https://www.iis.net/downloads/microsoft/url-rewrite" target="_blank" rel="noopener">https://www.iis.net/downloads/microsoft/url-rewrite</a> </p>
+<p>下载安装会比较慢，耐心等等</p>
+<p>2.设置规则–URL规则设置</p>
+<p>安装好模块后会在IIS界面看到一个“URL”重写，双击重写</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/6.PNG)</p>
+<p>双击后，在URL重写界面选择添加规则</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/7.PNG)</p>
+<p>选择空白规程</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/8.PNG)</p>
+<p>注意:</p>
+<p><strong>匹配URL：选择正则表达式，然后在模式根据请求api来填写，比如我请求的api全是‘/api/‘，那我这里就填写 ^((?!(api)).)*$即可</strong> </p>
+<p>手动点开条件</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/9.PNG)</p>
+<p>添加一个“条件”，选择“不是文件”，具体看上图</p>
+<p>手动点开“操作”选项，设置重写的URL为“/index.html”,然后点应用，我们的URL规则就配置好了</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/10.PNG)</p>
+<p>3.规则设置-代理设置</p>
+<p>这里需要在补充一个模块</p>
+<p> 传送门：<a href="https://www.iis.net/downloads/microsoft/application-request-routing" target="_blank" rel="noopener">https://www.iis.net/downloads/microsoft/application-request-routing</a> </p>
+<p>开启代理</p>
+<p> 按照好application request routing模块之后再IIS功能视图界面可以看到相关设置，具体见下图： </p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/11.PNG)</p>
+<p> 双击进入设置界面，在右上角找到设置项目，点击进入，具体见下图： </p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/12.PNG)</p>
+<p> Enable proxy 设置为”开启”，在右侧点击”应用”即可，具体见下图： </p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/13.PNG)</p>
+<p>4.规则设置–api规则</p>
+<p>同样在添加一个空白规则</p>
+<p>![](ABP Host+Vue-element-admin前后分离部署IIS/14.PNG)</p>
+<p>匹配URL：使用”通配符”；前端请求的地址是’/api/—-‘，所以模式设置”<em>api/</em>“<br>条件：不需要配置<br>操作：重写URL，比如我请求的实际地址是’ <a href="http://192.168.1.7:5000/swagger" target="_blank" rel="noopener">http://192.168.1.7:5000/swagger</a> ‘，那我这里就填写’<a href="https://192.168.1.7:5000/{R:2}&#39;，具体跟实际情况填写" target="_blank" rel="noopener">https://192.168.1.7:5000/{R:2}&#39;，具体跟实际情况填写</a></p>
+<p>这样我们就可以成功访问接口啦。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持Majin Patrick Star</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/12/06/WebAPI%E5%AD%A6%E4%B9%A0/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>在IIS上部署项目总结 | Majin Patrick Star</title>
+  <title>在IIS上部署ABP-MVC版总结 | Majin Patrick Star</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -18,7 +18,7 @@
   <meta name="description" content="#发布前的准备  一般情况下先需要安装这三个  保证项目模块里面有这两个  查看配置环境在cmd执行 1dotnen --info ##打包项目  鼠标右击你要发布的项目选择发布  配置发布路径(准备一个空的文件夹)，选择发布方法为 文件系统  点击设置，如图配置，切记选择发布前删除所有现有文件  配置好后点击发布  发布成功后文件夹里会有很多打包好的文件   ##安装IIS管理器  在控制面版中">
 <meta name="keywords" content="环境部署">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在IIS上部署项目总结">
+<meta property="og:title" content="在IIS上部署ABP-MVC版总结">
 <meta property="og:url" content="http:&#x2F;&#x2F;553306277.github.io&#x2F;2019&#x2F;12&#x2F;06&#x2F;%E5%9C%A8IIS%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="Majin Patrick Star">
 <meta property="og:description" content="#发布前的准备  一般情况下先需要安装这三个  保证项目模块里面有这两个  查看配置环境在cmd执行 1dotnen --info ##打包项目  鼠标右击你要发布的项目选择发布  配置发布路径(准备一个空的文件夹)，选择发布方法为 文件系统  点击设置，如图配置，切记选择发布前删除所有现有文件  配置好后点击发布  发布成功后文件夹里会有很多打包好的文件   ##安装IIS管理器  在控制面版中">
@@ -50,7 +50,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-bf23d37cd9d793b9.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1200&#x2F;format&#x2F;webp">
 <meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-646170e53904864a.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1032&#x2F;format&#x2F;webp">
 <meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1979022-2b3ea471f6a0b273.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;342&#x2F;format&#x2F;webp">
-<meta property="og:updated_time" content="2019-12-06T09:27:09.612Z">
+<meta property="og:updated_time" content="2019-12-12T08:33:42.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18844140-60d9e94286f7eae1.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 
@@ -219,7 +219,7 @@ ga('send', 'pageview');
 <div class="content content-post CENTER">
    <article id="post-在IIS上部署项目总结" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">在IIS上部署项目总结</h1>
+    <h1 class="post-title">在IIS上部署ABP-MVC版总结</h1>
 
     <div class="article-meta">
       <span>
@@ -308,12 +308,12 @@ ga('send', 'pageview');
 <p>WebDAV Module和WebDAV Handler<br>WebDAV Handler的默认配置是处理如下 Method:PROPFIND,PROPPATCH,MKCOL,PUT,COPY,DELETE,MOVE,LOCK,UNLOCK。(可以参考%userprofile%/documents/iisexpress/config/applicationhost.config中的配置)因此PUT和DELETE请求会被Dispatch给WebDAV Handler来处理,但是我们一般不会Enable WebDAV功能。因此Delete和Put请求会被拒绝。</p>
 <ul>
 <li>解决办法　　　　　　　　　　　　　　<br>既然根本原因是WebDAV,最直接的解决办法就是移除WebDAV(一般情况下我们不会用到该功能)。移除有如下几种方法：<br>直接从系统中移除WebDAV Publish的整个功能(参考上面打开WebDAV Publish的截图)<br>在Web Site的web.config中移除WebDAVModule和WebDAVHandler<br>&lt;system.webServer&gt;  <modules>
-    <remove name=“WebDAVModule”/>
- </modules>
+    <remove name="“WebDAVModule”/">
+ </remove></modules>
  <handlers>
-   <remove name=“WebDAV”/>
- </handlers>
-</system.webServer>
+   <remove name="“WebDAV”/">
+ </remove></handlers>
+
 <meta charset="utf-8">
 
 </li>
@@ -378,10 +378,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="hide pull-left" href="/">
+    <a class="show pull-left" href="/2019/12/06/JavaScript-%E5%AF%B9%E8%B1%A1-%E6%95%B0%E5%AD%97/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/12/06/JavaScript-%E5%AF%B9%E8%B1%A1-%E6%95%B0%E5%AD%97/">
+    <a class="show pull-right" href="/2019/12/06/WebAPI%E5%AD%A6%E4%B9%A0/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
