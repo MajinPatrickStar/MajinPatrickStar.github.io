@@ -15,15 +15,15 @@
     <meta name="keywords" content="环境部署," />
   
 
-  <meta name="description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](&#x2F;ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.PNG)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](&#x2F;ABP Host+Vue-el">
+  <meta name="description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](&#x2F;ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.png)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](&#x2F;ABP Host+Vue-el">
 <meta name="keywords" content="环境部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ABP Host+Vue-element-admin前后分离部署IIS">
 <meta property="og:url" content="http:&#x2F;&#x2F;553306277.github.io&#x2F;2019&#x2F;12&#x2F;12&#x2F;ABP%20Host+Vue-element-admin%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2IIS&#x2F;index.html">
 <meta property="og:site_name" content="Majin Patrick Star">
-<meta property="og:description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](&#x2F;ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.PNG)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](&#x2F;ABP Host+Vue-el">
+<meta property="og:description" content="Host和vue-elemnet-admin部署Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦 这里有一个跨域问题需要注意  ![](&#x2F;ABP Host+Vue-element-admin前后分离部署IIS&#x2F;1.png)在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口 ![](&#x2F;ABP Host+Vue-el">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-12T09:00:02.721Z">
+<meta property="og:updated_time" content="2019-12-12T09:03:50.328Z">
 <meta name="twitter:card" content="summary">
 
   
@@ -232,14 +232,14 @@ ga('send', 'pageview');
       <h1 id="Host和vue-elemnet-admin部署"><a href="#Host和vue-elemnet-admin部署" class="headerlink" title="Host和vue-elemnet-admin部署"></a>Host和vue-elemnet-admin部署</h1><h4 id="Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦"><a href="#Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦" class="headerlink" title="Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦"></a>Host部署参考MVC部署流程，基本一样，Host部署后可以成功打开页面就算OK啦</h4><ul>
 <li>这里有一个跨域问题需要注意</li>
 </ul>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/1.PNG)<strong>在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口</strong></p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/2.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/1.png)<strong>在打好的包文件中有一个appsettings.json的配置文件，在里面配置好客户端和服务端的ip端口</strong></p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/2.png)</p>
 <p><strong>ServerRootAddress为你的服务端地址</strong></p>
 <p><strong>CorsOrigins为你的客户端地址</strong></p>
 <ul>
 <li>配置好这些直接把包放在IIS上就可以成功访问接口API了</li>
 </ul>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/3.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/3.png)</p>
 <h2 id="vue-element-admin打包部署iis"><a href="#vue-element-admin打包部署iis" class="headerlink" title="vue-element-admin打包部署iis"></a>vue-element-admin打包部署iis</h2><ul>
 <li>打包</li>
 </ul>
@@ -248,7 +248,7 @@ ga('send', 'pageview');
 <ul>
 <li>发布</li>
 </ul>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/4.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/4.png)</p>
 <p>1.在”网站”执行鼠标右键，选择添加网站。<br>2.网站名称：按照用途或者项目起名即可<br>3.应用程序池：部署前端项目，这个可以忽略，任意选择即可<br>4.内容目录：网站存放的路径，最好以英文命名<br>5.端口：web一般是80端口，不过我的80已经被其他项目占用，所以我设置为8082 </p>
 <ul>
 <li><p>访问网站</p>
@@ -259,7 +259,7 @@ ga('send', 'pageview');
 <ul>
 <li>填坑–报错：URL拼写错误</li>
 </ul>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/5.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/5.png)</p>
 <p>报错内容：提示URL拼写错误</p>
 <p><strong>在IIS中开启代理和设置URL重写可以解决上述问题</strong></p>
 <p>1.下载所需要的模块: urlrewrite </p>
@@ -267,31 +267,31 @@ ga('send', 'pageview');
 <p>下载安装会比较慢，耐心等等</p>
 <p>2.设置规则–URL规则设置</p>
 <p>安装好模块后会在IIS界面看到一个“URL”重写，双击重写</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/6.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/6.png)</p>
 <p>双击后，在URL重写界面选择添加规则</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/7.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/7.png)</p>
 <p>选择空白规程</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/8.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/8.png)</p>
 <p>注意:</p>
 <p><strong>匹配URL：选择正则表达式，然后在模式根据请求api来填写，比如我请求的api全是‘/api/‘，那我这里就填写 ^((?!(api)).)*$即可</strong> </p>
 <p>手动点开条件</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/9.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/9.png)</p>
 <p>添加一个“条件”，选择“不是文件”，具体看上图</p>
 <p>手动点开“操作”选项，设置重写的URL为“/index.html”,然后点应用，我们的URL规则就配置好了</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/10.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/10.png)</p>
 <p>3.规则设置-代理设置</p>
 <p>这里需要在补充一个模块</p>
 <p> 传送门：<a href="https://www.iis.net/downloads/microsoft/application-request-routing" target="_blank" rel="noopener">https://www.iis.net/downloads/microsoft/application-request-routing</a> </p>
 <p>开启代理</p>
 <p> 按照好application request routing模块之后再IIS功能视图界面可以看到相关设置，具体见下图： </p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/11.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/11.png)</p>
 <p> 双击进入设置界面，在右上角找到设置项目，点击进入，具体见下图： </p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/12.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/12.png)</p>
 <p> Enable proxy 设置为”开启”，在右侧点击”应用”即可，具体见下图： </p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/13.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/13.png)</p>
 <p>4.规则设置–api规则</p>
 <p>同样在添加一个空白规则</p>
-<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/14.PNG)</p>
+<p>![](/ABP Host+Vue-element-admin前后分离部署IIS/14.png)</p>
 <p>匹配URL：使用”通配符”；前端请求的地址是’/api/—-‘，所以模式设置”<em>api/</em>“<br>条件：不需要配置<br>操作：重写URL，比如我请求的实际地址是’ <a href="http://192.168.1.7:5000/swagger" target="_blank" rel="noopener">http://192.168.1.7:5000/swagger</a> ‘，那我这里就填写’<a href="https://192.168.1.7:5000/{R:2}&#39;，具体跟实际情况填写" target="_blank" rel="noopener">https://192.168.1.7:5000/{R:2}&#39;，具体跟实际情况填写</a></p>
 <p>这样我们就可以成功访问接口啦。</p>
 
